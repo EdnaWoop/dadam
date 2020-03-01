@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Registration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="pretty.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <ui:include src="header.xhtml"/>
+        <main>
+            <h:outputText value="#{RegisterBean.errorMessage}"/>
+            <h:form>
+                <h:outputLabel for="Fname" value="#{msg['fname.jsf']}"/>
+                <h:inputText requiredMessage="#{msg['freq.jsf']}" required="true"  id="Fname" value="#{RegisterBean.name}" validatorMessage="#{msg['finval.jsf']}">
+                    <f:validateRegex pattern="^[A-Za-z]+$"/>
+                </h:inputText>
+                <h:outputLabel for="Lname" value="#{msg['lname.jsf']}"/>
+                <h:inputText requiredMessage="#{msg['lreq.jsf']}" required="true" id="Lname" value="#{RegisterBean.lastname}" validatorMessage="#{msg['linval.jsf']}">
+                    <f:validateRegex pattern="^[A-Za-z]+$"/>
+                </h:inputText>
+                <h:outputLabel for="Uname" value="#{msg['loginU.jsf']}"/>
+                <h:inputText requiredMessage="#{msg['ureq.jsf']}" required="true" id="Uname" value="#{RegisterBean.username}"/>
+                <h:outputLabel for="SSN" value="#{msg['ssn.jsf']}"/>
+                <h:inputText requiredMessage="#{msg['sreq.jsf']}" required="true" id="SSN" value="#{RegisterBean.SSN}" validatorMessage="#{msg['sinval.jsf']}">
+                    <f:validateLength minimum="10" maximum="10"/>
+                    <f:validateRegex pattern="^[0-9]+$"/>
+                </h:inputText>
+                <h:outputLabel for="email" value="#{msg['email.jsf']}"/>
+                <h:inputText requiredMessage="#{msg['ereq.jsf']}" required="true" id="eamil" value="#{RegisterBean.email}" validatorMessage="#{msg['einval.jsf']}"> 
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </h:inputText>
+                <h:outputLabel for="pwd" value="#{msg['loginP.jsf']}"/>
+                <h:inputSecret requiredMessage="#{msg['preq.jsf']}" required="true" id="pwd" value="#{RegisterBean.pwd}"/>
+                <h:commandButton value="#{msg['reg.jsf']}" action="#{RegisterBean.regristration()}"/>
+            </h:form>
+        </main>
+        <ui:include src="footer.xhtml"/>
+    </body>
+</html>
